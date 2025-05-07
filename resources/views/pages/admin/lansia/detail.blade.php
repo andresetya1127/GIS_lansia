@@ -22,14 +22,6 @@
         <div class="col-xl-4 col-md-4 col-sm-12 mb-3">
             <x-base.card>
                 <div class="d-flex flex-column">
-                    <!-- Tgl Lahir -->
-                    <h5 class="fw-semibold">Status</h5>
-                    <p>
-                        <span
-                            class="text-capitalize badge bg-{{ $data->status == 'success' ? 'success' : ($data->status == 'pending' ? 'info' : 'danger') }}">
-                            {{ $data->status == 'success' ? 'Dikonfirmasi' : ($data->status == 'pending' ? 'Proses' : 'Ditolak') }}
-                        </span>
-                    </p>
 
                     <!-- Tgl Lahir -->
                     <h5 class="fw-semibold">Tgl Lahir</h5>
