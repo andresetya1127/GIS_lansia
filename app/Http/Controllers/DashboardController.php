@@ -60,8 +60,8 @@ class DashboardController extends Controller
                     'color' => 'bg-danger'
                 ]
             ]);
-            return view('pages.admin.dashboard.index', compact('stats'));
         }
+        return view('pages.admin.dashboard.index', compact('stats'));
     }
 
     public function locations()
