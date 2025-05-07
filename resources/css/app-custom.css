@@ -1,0 +1,359 @@
+@import 'tom-select/dist/css/tom-select.css';
+
+/* Tom Select */
+.ts-control {
+    border: none;
+    padding: 5px 6px;
+}
+
+.ts-dropdown.single {
+    margin-top: 6px;
+    box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+}
+
+
+
+/* HTML marker styles */
+.price-tag {
+    background-color: #4285F4;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding: 10px 15px;
+    position: relative;
+}
+
+.price-tag::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 0);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #4285F4;
+}
+
+/*  */
+
+
+:root {
+    --background: #000;
+    --foreground: #fff;
+    --size: 96px;
+}
+
+* {
+    font-size: 12px !important;
+}
+
+.btn-check:checked+.btn {
+    color: #fff !important;
+}
+
+.card-margin {
+    margin-bottom: 1.875rem;
+}
+
+.card {
+    border: 0;
+    box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 1px solid #e6e4e9;
+    border-radius: 8px;
+}
+
+.card .card-header.no-border {
+    border: 0;
+}
+
+.card .card-header {
+    background: none;
+    padding: 0 0.9375rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+}
+
+
+
+.loader {
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.drip {
+    background-color: red;
+    height: var(--size);
+    width: var(--size);
+    position: relative;
+    filter: contrast(30);
+    background-image: radial-gradient(var(--background) 20%, var(--foreground));
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.drip::before,
+.drip::after {
+    content: "";
+    top: calc(var(--size) / -2);
+    position: absolute;
+    background-color: var(--foreground);
+    filter: blur(3px);
+    border-top-left-radius: 80%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 80%;
+    animation-name: drop;
+    animation-iteration-count: infinite;
+    animation-direction: forwards;
+    animation-timing-function: cubic-bezier(0.87, 0, 0.13, 1);
+    animation-duration: 2s;
+}
+
+.drip::after {
+    left: calc(var(--size) / 3);
+    height: calc(var(--size) / 4);
+    width: calc(var(--size) / 4);
+}
+
+.drip::before {
+    animation-delay: -0.2s;
+    right: calc(var(--size) / 3);
+    height: calc(var(--size) / 6);
+    width: calc(var(--size) / 6);
+}
+
+@keyframes drop {
+    from {
+        transform: translatey(0) rotate(-45deg);
+    }
+
+    to {
+        transform: translatey(calc(var(--size) + calc(var(--size) / 1.85))) rotate(-45deg);
+    }
+}
+
+/* Button */
+
+/* From Uiverse.io by vinodjangid07 */
+.button-a.green {
+    background-color: rgb(77, 197, 79);
+
+}
+
+.button-a {
+    max-width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0px 15px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition-duration: .2s;
+}
+
+.bell {
+    width: 13px;
+}
+
+.bell path {
+    fill: rgb(255, 255, 255);
+}
+
+.arrow {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-a:hover {
+    background-color: rgb(56, 201, 95);
+    transition-duration: .2s;
+}
+
+.button-a:hover .arrow {
+    animation: slide-right .6s ease-out both;
+}
+
+/* arrow animation */
+@keyframes slide-right {
+    0% {
+        transform: translateX(-10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.button-a:active {
+    transform: translate(1px, 1px);
+    transition-duration: .2s;
+}
+
+
+
+.step-wrapper {
+    padding: 20px 0;
+    display: none;
+}
+
+.step-wrapper.active {
+    display: block;
+}
+
+.step-indicator {
+    border-collapse: separate;
+    display: table;
+    margin-left: 0px;
+    position: relative;
+    table-layout: fixed;
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 0;
+    padding-top: 20px;
+}
+
+.step-indicator li {
+    display: table-cell;
+    position: relative;
+    float: none;
+    padding: 0;
+    width: 1%;
+}
+
+.step-indicator li:after {
+    background-color: #ccc;
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    width: 100%;
+    top: 32px;
+}
+
+.step-indicator li:after {
+    left: 50%;
+}
+
+.step-indicator li:last-child:after {
+    display: none;
+}
+
+.step-indicator li.active .step {
+    border-color: #4183D7;
+    color: #4183D7;
+}
+
+.step-indicator li.active .caption {
+    color: #4183D7;
+}
+
+.step-indicator li.complete:after {
+    background-color: #87D37C;
+}
+
+.step-indicator li.complete .step {
+    border-color: #87D37C;
+    color: #87D37C;
+}
+
+.step-indicator li.complete .caption {
+    color: #87D37C;
+}
+
+.step-indicator .step {
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    color: #ccc;
+    font-size: 24px;
+    height: 64px;
+    line-height: 64px;
+    margin: 0 auto;
+    position: relative;
+    width: 64px;
+    z-index: 1;
+}
+
+.step-indicator .step:hover {
+    cursor: pointer;
+}
+
+.step-indicator .caption {
+    color: #ccc;
+    padding: 11px 16px;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(-200px) scaleY(0.9);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: translateY(0px) scaleY(1);
+        opacity: 1;
+    }
+
+    65% {
+        transform: translateY(-17px) scaleY(0.9);
+        opacity: 1;
+    }
+
+    75% {
+        transform: translateY(-22px) scaleY(0.9);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0px) scaleY(1);
+        opacity: 1;
+    }
+}
+
+.drop {
+    animation: drop 0.3s linear forwards var(--delay-time);
+}
