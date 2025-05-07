@@ -70,6 +70,7 @@ async function initMap() {
 
     const response = await fetch('/admin/dashboard/locations');
     const locations = await response.json();
+    console.log(locations);
 
     // Add some markers to the map.
     const markers = locations.map((position, i) => {

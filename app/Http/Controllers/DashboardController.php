@@ -66,9 +66,9 @@ class DashboardController extends Controller
 
     public function locations()
     {
-        $cordinat = Lansia::query();
+
         if (Auth::user()->hasRole('admin')) {
-            $cordinat->select('nama', 'status', 'lat', 'lng', 'alamat', 'created_at')->orderBy('created_at', 'desc')->get()->toArray();
+            $cordinat = Lansia::select('nama', 'status', 'lat', 'lng', 'alamat', 'created_at')->orderBy('created_at', 'desc')->get()->toArray();
         } else {
             $cordinat = Lansia::query()->where('user_id', Auth::user()->id)->select('nama', 'status', 'lat', 'lng', 'alamat', 'created_at')->orderBy('created_at', 'desc')->get()->toArray();
         }
