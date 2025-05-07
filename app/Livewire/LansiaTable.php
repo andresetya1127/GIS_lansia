@@ -26,7 +26,7 @@ class LansiaTable extends DataTableComponent
     {
         $this->setPrimaryKey('id');
         $this->setOfflineIndicatorStatus(true);
-        $this->setLoadingPlaceholderStatus(true);
+        // $this->setLoadingPlaceholderStatus(true);
         $this->setEagerLoadAllRelationsStatus(true);
         $this->setTdAttributes(function (Column $column, $row, $columnIndex, $rowIndex) {
             return [

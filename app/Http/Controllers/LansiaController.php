@@ -68,12 +68,13 @@ class LansiaController extends Controller
         }
 
         $request->merge([
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
+            'status' =>  auth()->user()->hasRole('admin') ? 'success' : 'pending',
         ]);
 
         try {
             DB::beginTransaction();
-            $data = Lansia::create($request->only('nama', 'nik', 'alamat', 'lat', 'lng', 'tgl_lahir', 'umur', 'provinsi', 'kabupaten', 'kecamatan', 'desa', 'rt', 'rw', 'user_id'));
+            $data = Lansia::create($request->only('nama', 'nik', 'alamat', 'lat', 'lng', 'tgl_lahir', 'umur', 'provinsi', 'kabupaten', 'kecamatan', 'desa', 'rt', 'rw', 'user_id', 'status'));
             $user = User::role('admin')->get();
             $notif = [
                 'title' => 'Lansia baru ditambahkan!',
