@@ -28,7 +28,7 @@ class StatusLansia extends Component
     {
         if ($this->status == 'success') {
             $data = Lansia::with('pendata')->find($this->id);
-            $data->status = $this->status;
+            $data->update(['status' => 'success']);
             $data->save();
             $notif = [
                 'title' => 'Lansia berhasil dikonfirmasi',

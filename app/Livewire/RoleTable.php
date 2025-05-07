@@ -38,7 +38,7 @@ class RoleTable extends DataTableComponent
     public function beforeToolbar(): array
     {
         return [
-            ['url' => route('role.create'), 'title' => __('roles'), 'icon' => 'fa-circle-plus'],
+            ['url' => route('role.create'), 'title' => __('roles'), 'icon' => 'fa-circle-plus', 'color' => 'success'],
         ];
     }
 
