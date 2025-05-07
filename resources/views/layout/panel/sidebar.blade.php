@@ -3,15 +3,11 @@
 @endphp
 
 
-<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+<div class="sidebar sidebar-dark sidebar-fixed border-end" style="background-color: #666768" id="sidebar">
     <div class="sidebar-header border-bottom">
-        <div class="sidebar-brand">
-            <svg class="sidebar-brand-full" width="88" height="32" alt="CoreUI Logo">
-                <use xlink:href="assets/brand/coreui.svg#full"></use>
-            </svg>
-            <svg class="sidebar-brand-narrow" width="32" height="32" alt="CoreUI Logo">
-                <use xlink:href="assets/brand/coreui.svg#signet"></use>
-            </svg>
+        <div class="sidebar-brand ">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Lambang_Kabupaten_Lombok_Tengah.gif"
+                alt="Logo Lombok tengah" width="50">
         </div>
         <button class="btn-close d-lg-none" type="button" data-coreui-theme="dark" aria-label="Close"
             onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
@@ -25,7 +21,7 @@
                     </li>
                 @endif
 
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="{{ $menu['route'] ? route($menu['route']) : '#' }}">
                         <i class="nav-icon fa-solid {{ $menu['icon'] }} me-3"></i>
                         {{ $menu['name'] }}
