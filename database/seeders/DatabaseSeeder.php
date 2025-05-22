@@ -52,6 +52,8 @@ class DatabaseSeeder extends Seeder
             'delete lansia',
         ]);
 
+        $admin->
+
         $petugas->givePermissionTo([
             'show dashboard',
             'show lansia',

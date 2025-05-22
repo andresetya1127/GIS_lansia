@@ -50,14 +50,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'users', 'contro
     Route::delete('/delete/{id}', 'delete')->name('users.delete')->middleware('can:delete users');
 });
 
-
 // Users
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'lansia', 'controller' => LansiaController::class], function () {
     Route::get('/', 'index')->name('lansia')->middleware('can:show lansia');
-    Route::get('/create', 'create')->name('lansia.create')->middleware('can:create lansia');
-    Route::post('/lansia/store', 'store')->name('lansia.store')->middleware('can:create lansia');
+    Route::get('/edit/{id}', 'edit')->name('lansia.edit')->middleware('can:create lansia');
+    Route::post('/store/{id}', 'store')->name('lansia.store')->middleware('can:create lansia');
+    Route::post('/location/check', 'findLocation')->name('lansia.findLocation')->middleware('can:create lansia');
     Route::get('/detail/{id}', 'detailResponse')->name('response.lansia.detail')->middleware('can:show lansia');
     Route::get('/show/{id}', 'detail')->name('lansia.detail')->middleware('can:show lansia');
+    Route::post('/import', 'import')->name('lansia.import')->middleware('can:create lansia');
 });
 
 

@@ -21,9 +21,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-
-
-
         if (Auth::user()->hasRole('admin')) {
             $stats = collect([
                 'success' => [

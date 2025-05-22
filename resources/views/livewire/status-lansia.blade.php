@@ -3,8 +3,8 @@
     <h5 class="fw-semibold">Status</h5>
     <p>
         <span
-            class="text-capitalize badge bg-{{ $data->status == 'success' ? 'success' : ($data->status == 'pending' ? 'info' : 'danger') }}">
-            {{ $data->status == 'success' ? 'Dikonfirmasi' : ($data->status == 'pending' ? 'Proses' : 'Ditolak') }}
+            class="text-capitalize badge bg-{{ $data->status == 'success' ? 'success' : ($data->status == 'pending' ? 'info' : ($data->status == 'die' ? 'danger' : 'warning')) }}">
+            {{ $data->status == 'success' ? 'Dikonfirmasi' : ($data->status == 'pending' ? 'Proses' : ($data->status == 'die' ? 'Meninggal' : 'Ditolak')) }}
         </span>
     </p>
 
@@ -15,6 +15,7 @@
             <option value="" selected>Pilih Status</option>
             <option value="success">Konfirmasi</option>
             <option value="reject">Tolak</option>
+            <option value="die">Meninggal</option>
         </x-forms.select>
         <button class="btn btn-primary float-end" wire:click="updateStatus">
             Simpan

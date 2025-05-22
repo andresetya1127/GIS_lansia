@@ -38,8 +38,8 @@ class LansiaTable extends DataTableComponent
         $this->setEmptyMessage(__('No data available in table'));
         $this->setConfigurableAreas([
             'before-toolbar' => [
-                'components.table.before-tools',
-                ['toolbar' => $this->beforeToolbar()],
+                'components.table.import',
+                 $this->import(),
             ],
         ]);
     }
@@ -57,10 +57,14 @@ class LansiaTable extends DataTableComponent
     //     ];
     // }
 
-    public function beforeToolbar(): array
+    public function import()
     {
         return [
-            ['url' => route('lansia.create'), 'title' => __('Lansia'), 'icon' => 'fa-circle-plus', 'color' => 'success'],
+            'title' => 'Import',
+            'icon' => 'fa fa-file-import',
+            'id' => 'file',
+            'url' => route('lansia.import'),
+            'accept' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         ];
     }
 
@@ -147,7 +151,11 @@ class LansiaTable extends DataTableComponent
     public function findLocation($id)
     {
         $lansia = Lansia::find($id);
-        $this->dispatch('markerUpdate', $lansia);
+        if ($lansia->lng && $lansia->lat) {
+              $this->dispatch('markerUpdate', $lansia);
+        }else{
+              $this->dispatch('markerError', ['message' => 'Lokasi tidak ditemukan!']);
+        }
     }
 
     #[On('confirmDelete')]

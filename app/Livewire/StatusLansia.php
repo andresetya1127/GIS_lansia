@@ -44,6 +44,21 @@ class StatusLansia extends Component
         if ($this->status == 'reject') {
             $this->dispatch('statusReject', ['message' => 'Masukkan alasan penolakan!']);
         }
+
+          if ($this->status == 'die') {
+            $data = Lansia::with('pendata')->find($this->id);
+            $data->update(['status' => 'die']);
+            $data->save();
+            $notif = [
+                'title' => 'Lansia dikonfirmasi dengan status meninggal.',
+                'name' => auth()->user()->name,
+                'icon' => 'fa-solid fa-check',
+                'message' => 'Data lansia berhasil dikonfirmasi oleh ' . auth()->user()->name,
+                'url' => route('lansia.detail', $data->uuid),
+            ];
+            Notification::sendNow($data->pendata, new LansiaNotif($notif));
+            $this->dispatch('miniNotif', ['message' => 'Status berhasil diubah!']);
+        }
     }
 
     #[On('rejectData')]

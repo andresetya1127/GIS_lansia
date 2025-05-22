@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 $('.loader').addClass('d-none');
 
+
 function initTomSelect() {
     var settings = {};
     new TomSelect(".select-beast", {
@@ -60,4 +61,10 @@ function initTomSelect() {
         }
     });
 }
-initTomSelect();
+
+
+try {
+    initTomSelect();
+} catch (e) {
+
+}

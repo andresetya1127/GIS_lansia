@@ -43,7 +43,6 @@ async function initMap() {
     // Request needed libraries.
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
-    const { Places } = await google.maps.importLibrary("places");
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
 
@@ -59,25 +58,14 @@ async function initMap() {
 
     const infoWindow = new google.maps.InfoWindow();
 
+    let latInput = document.getElementById('lat');
+    let lngInput = document.getElementById('lng');
+
     // Tombol lokasi saya
     const locationButton = document.createElement("button");
     locationButton.innerHTML = "<i class='fas fa-location-arrow'></i> Lokasi saya";
     locationButton.classList.add("btn", "btn-light", "m-3");
 
-    // input lat
-    const latInput = document.createElement("input");
-    latInput.type = "hidden";
-    latInput.id = "latInput";
-    latInput.name = "lat";
-
-    // input lng
-    const lngInput = document.createElement("input");
-    lngInput.type = "hidden";
-    lngInput.id = "lngInput";
-    lngInput.name = "lng";
-
-    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(latInput);
-    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(lngInput);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationButton);
 
 
@@ -91,11 +79,11 @@ async function initMap() {
 
     draggableMarker.addListener("dragend", (event) => {
         const position = draggableMarker.position;
-        latInput.value = position.lat;
-        lngInput.value = position.lng;
-        // infoWindow.close();
-        // infoWindow.setContent(`Pin dropped at: ${position.lat}, ${position.lng}`);
-        // infoWindow.open(draggableMarker.map, draggableMarker);
+        latInput.value = position.lat.toFixed(7);
+        lngInput.value = position.lng.toFixed(7);
+        infoWindow.close();
+        infoWindow.setContent(`Pin dropped at: ${position.lat.toFixed(7)}, ${position.lng.toFixed(7)}`);
+        infoWindow.open(draggableMarker.map, draggableMarker);
     });
 
 
@@ -135,24 +123,24 @@ async function initMap() {
     });
 
 
-    // Autocomplete setup
-    const input = document.getElementById("location-search");
-    autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.bindTo("bounds", map);
+    // // Autocomplete setup
+    // const input = document.getElementById("location-search");
+    // autocomplete = new google.maps.places.Autocomplete(input);
+    // autocomplete.bindTo("bounds", map);
 
-    autocomplete.addListener("place_changed", () => {
-        const place = autocomplete.getPlace();
-        if (!place.geometry) {
-            alert("Lokasi tidak ditemukan");
-            return;
-        }
+    // autocomplete.addListener("place_changed", () => {
+    //     const place = autocomplete.getPlace();
+    //     if (!place.geometry) {
+    //         alert("Lokasi tidak ditemukan");
+    //         return;
+    //     }
 
-        // Pindahkan peta dan marker ke lokasi baru
-        const newPos = place.geometry.location;
-        marker.setPosition(newPos);
-        map.setCenter(newPos);
-        map.setZoom(15);
-    });
+    //     // Pindahkan peta dan marker ke lokasi baru
+    //     const newPos = place.geometry.location;
+    //     marker.setPosition(newPos);
+    //     map.setCenter(newPos);
+    //     map.setZoom(15);
+    // });
 }
 
 

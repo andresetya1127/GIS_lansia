@@ -48,9 +48,10 @@ async function initMap() {
     const position = {
         lat: Number(latlang.dataset.lat ?? 0),
         lng: Number(latlang.dataset.lng ?? 0)
+
     };
 
-    const map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(latlang, {
         zoom: 11,
         center: position,
         mapId: "detail",

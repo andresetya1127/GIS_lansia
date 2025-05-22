@@ -7,9 +7,9 @@
         </div>
         <div class="col-xl-6 col-sm-12  ">
             <div class="d-flex float-end gap-2">
-                <button class="btn btn-primary">
+                <a href="{{route('lansia.edit',$data->uuid)}}" class="btn btn-primary">
                     <i class="fa-solid fa-pen-to-square"></i> Edit
-                </button>
+                </a>
                 <button class="btn btn-danger text-white">
                     <i class="fa-solid fa-trash"></i>
                 </button>

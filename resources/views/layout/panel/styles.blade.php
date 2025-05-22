@@ -2,9 +2,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-<meta name="author" content="Łukasz Holeczek">
-<meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{{ $title ?? 'GIS Lansia' }}</title>
 <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('dist') }}/assets/favicon/apple-icon-57x57.png">
@@ -36,8 +33,9 @@
 <link href="{{ asset('dist') }}/css/style.css" rel="stylesheet">
 <!-- We use those styles to show code examples, you should remove them in your application.-->
 <link href="{{ asset('dist') }}/css/examples.css" rel="stylesheet">
-<script src="{{ asset('dist') }}/js/config.js"></script>
-<script src="{{ asset('dist') }}/js/color-modes.js"></script>
 <link href="{{ asset('dist') }}/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
 
+<script src="{{ asset('dist') }}/js/config.js"></script>
+<script src="{{ asset('dist') }}/js/color-modes.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 @vite(['resources/css/app-custom.css'])

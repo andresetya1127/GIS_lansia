@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\LansiaImport;
 use App\Models\Lansia;
 use App\Models\User;
 use App\Notifications\LansiaNotif;
@@ -11,7 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LansiaController extends Controller
 {
@@ -20,31 +23,23 @@ class LansiaController extends Controller
         return view('pages.admin.lansia.index');
     }
 
-    public function create(): View
+    public function edit($id): View
     {
-        return view('pages.admin.lansia.create');
+        $data = Lansia::findOrFail($id);
+        return view('pages.admin.lansia.edit', compact('data'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        if ($request->input('target') !== 'save') {
-            $location = $this->findLocation($request);
-
-            return response()->json($location, $location['code']);
-        }
-
-
-        if ($request->input('target') == 'save') {
-            $save = $this->saveLansia($request);
-            return response()->json($save, $save['code']);
-        }
+        $save = $this->saveLansia($request, $id);
+        return response()->json($save, $save['code']);
     }
 
-    public function saveLansia($request)
+    public function saveLansia($request, $id)
     {
         $validator = Validator::make($request->all(), [
             'nama' => ['required'],
-            'nik' => ['required', 'numeric', 'min:16', 'unique:lansias,nik'],
+            'nik' => ['required', 'numeric', 'min:16', Rule::unique('lansias', 'nik')->ignore($id, 'uuid')],
             'alamat' => ['required'],
             'lat' => ['required'],
             'lng' => ['required'],
@@ -67,14 +62,10 @@ class LansiaController extends Controller
             ];
         }
 
-        $request->merge([
-            'user_id' => Auth::user()->id,
-            'status' =>  auth()->user()->hasRole('admin') ? 'success' : 'pending',
-        ]);
-
         try {
             DB::beginTransaction();
-            $data = Lansia::create($request->only('nama', 'nik', 'alamat', 'lat', 'lng', 'tgl_lahir', 'umur', 'provinsi', 'kabupaten', 'kecamatan', 'desa', 'rt', 'rw', 'user_id', 'status'));
+            $data = Lansia::findOrFail($id);
+            $data->update($request->only('nama', 'nik', 'alamat', 'lat', 'lng', 'tgl_lahir', 'umur', 'provinsi', 'kabupaten', 'kecamatan', 'desa', 'rt', 'rw', 'user_id', 'status'));
             $user = User::role('admin')->get();
             $notif = [
                 'title' => 'Lansia baru ditambahkan!',
@@ -102,7 +93,7 @@ class LansiaController extends Controller
         }
     }
 
-    public function findLocation($request)
+    public function findLocation(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'lat' => ['required', 'numeric'],
@@ -125,6 +116,7 @@ class LansiaController extends Controller
             'lon' => $request->input('lng'),
             'format' => 'json'
         ]);
+
         if ($response->failed()) {
             return [
                 'status' => 'error',
@@ -133,10 +125,14 @@ class LansiaController extends Controller
             ];
         }
 
+        $data = $response->json()['address'];
+        $data['display_name'] = $response->json()['display_name'];
+
         return [
-            'data' =>  view('response.form-location', ['location' => $response->json()])->render(),
+            'data' => $data,
             'status' => 'success',
             'message' => 'Lokasi berhasil ditemukan.',
+            'target' => 'save',
             'code' => $response->status(),
         ];;
     }
@@ -159,6 +155,26 @@ class LansiaController extends Controller
     {
         if ($data->user_id != Auth::user()->id || !auth()->user()->hasRole('admin')) {
             abort(404);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => ['required', 'mimes:xlsx,xls,csv'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('lansia')->withErrors($validator);
+        }
+
+        try {
+            $file = $request->file('file');
+            Excel::import(new LansiaImport, $file);
+
+            return redirect()->route('lansia')->with('message', 'Data berhasil diimport!');
+        } catch (\Throwable $th) {
+            return redirect()->route('lansia')->with('message', 'Data gagal diimport!');
         }
     }
 }

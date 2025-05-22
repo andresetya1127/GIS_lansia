@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
             const content = `
                     <h5>${data[0].nama}</h5>
-                    <p>${data[0].alamat}</p>
+                    <p>${data[0].provinsi}, ${data[0].kabupaten}, ${data[0].kecamatan}, ${data[0].desa},${data[0].alamat}</p>
             `;
             const status = data[0].status;
 
@@ -131,4 +131,12 @@ document.addEventListener('DOMContentLoaded', function () {
             map.setCenter(position);
         }
     });
+
+      Livewire.on('markerError', async (data) => {
+        Toast.fire({
+            icon: 'error',
+            title: data.message
+        })
+      });
+
 });
