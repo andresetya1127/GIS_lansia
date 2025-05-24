@@ -30,13 +30,18 @@ class DashboardController extends Controller
                 ],
                 'pending' => [
                     'title' => 'Menunggu Konfirmasi',
-                    'count' => $this->modelLansia::where('status', 'success')->count(),
+                    'count' => $this->modelLansia::where('status', 'pending')->count(),
                     'color' => 'bg-info'
                 ],
                 'reject' => [
                     'title' => 'Ditolak',
-                    'count' => $this->modelLansia::where('status', 'success')->count(),
+                    'count' => $this->modelLansia::where('status', 'reject')->count(),
                     'color' => 'bg-danger'
+                ],
+                   'die' => [
+                    'title' => 'Meninggal',
+                    'count' => $this->modelLansia::where('status', 'die')->count(),
+                    'color' => 'bg-warning'
                 ]
             ]);
         } else {
@@ -48,13 +53,18 @@ class DashboardController extends Controller
                 ],
                 'pending' => [
                     'title' => 'Menunggu Konfirmasi',
-                    'count' => $this->modelLansia::where('status', 'success')->where('user_id', Auth::user()->id)->count(),
+                    'count' => $this->modelLansia::where('status', 'pending')->where('user_id', Auth::user()->id)->count(),
                     'color' => 'bg-info'
                 ],
                 'reject' => [
                     'title' => 'Ditolak',
-                    'count' => $this->modelLansia::where('status', 'success')->where('user_id', Auth::user()->id)->count(),
+                    'count' => $this->modelLansia::where('status', 'reject')->where('user_id', Auth::user()->id)->count(),
                     'color' => 'bg-danger'
+                ],
+                 'die' => [
+                    'title' => 'Meninggal',
+                    'count' => $this->modelLansia::where('status', 'die')->where('user_id', Auth::user()->id)->count(),
+                    'color' => 'bg-warning'
                 ]
             ]);
         }

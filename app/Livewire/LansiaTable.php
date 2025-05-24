@@ -38,9 +38,9 @@ class LansiaTable extends DataTableComponent
         $this->setEmptyMessage(__('No data available in table'));
         $this->setConfigurableAreas([
             'before-toolbar' => [
-                'components.table.import',
+                'components.table.header-tools',
                  $this->import(),
-            ],
+            ]
         ]);
     }
 
@@ -114,6 +114,12 @@ class LansiaTable extends DataTableComponent
                 ->sortable(),
             Column::make("lat")->hideIf(true),
             Column::make("lng")->hideIf(true),
+            Column::make("Kordinat")
+            ->label(fn( $row) => view('components.table.badge', [
+                'icon' => $row->lat && $row->lng ? 'fa fa-check-circle' : 'fa fa-times-circle',
+                'slot' => '',
+                'class' => $row->lat && $row->lng ? 'success text-white' : 'danger text-white',
+            ])),
             DateColumn::make("Tgl Pendataan", "created_at")
                 ->inputFormat('Y-m-d H:i:s')
                 ->outputFormat('d M Y')

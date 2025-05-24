@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LansiaExport;
 use App\Imports\LansiaImport;
 use App\Models\Lansia;
 use App\Models\User;
@@ -176,5 +177,10 @@ class LansiaController extends Controller
         } catch (\Throwable $th) {
             return redirect()->route('lansia')->with('message', 'Data gagal diimport!');
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new LansiaExport, 'lansia.xlsx');
     }
 }

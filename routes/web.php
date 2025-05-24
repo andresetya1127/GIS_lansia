@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'lansia', 'contr
     Route::get('/detail/{id}', 'detailResponse')->name('response.lansia.detail')->middleware('can:show lansia');
     Route::get('/show/{id}', 'detail')->name('lansia.detail')->middleware('can:show lansia');
     Route::post('/import', 'import')->name('lansia.import')->middleware('can:create lansia');
+    Route::get('/export', 'export')->name('lansia.export')->middleware('can:create lansia');
 });
 
 
