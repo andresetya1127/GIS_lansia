@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nik', false)->nullable();
             $table->string('nama')->nullable();
             $table->date('tgl_lahir')->nullable();
-            $table->float('umur')->nullable();
+            $table->string('umur')->nullable();
             $table->string('provinsi')->nullable();
             $table->string('kabupaten')->nullable();
             $table->string('kecamatan')->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('lng')->nullable();
             $table->foreignId('user_id');
             $table->string('status')->default('pending');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

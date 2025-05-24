@@ -7,7 +7,7 @@
         </div>
         <div class="col-xl-6 col-sm-12  ">
             <div class="d-flex float-end gap-2">
-                <a href="{{route('lansia.edit',$data->uuid)}}" class="btn btn-primary">
+                <a href="{{ route('lansia.edit', $data->uuid) }}" class="btn btn-primary">
                     <i class="fa-solid fa-pen-to-square"></i> Edit
                 </a>
                 <button class="btn btn-danger text-white">
@@ -21,6 +21,9 @@
     <div class="mt-5 row">
         <div class="col-xl-4 col-md-4 col-sm-12 mb-3">
             <x-base.card>
+                <div class="d-flex justify-content-center mb-4">
+                    <img src="{{ asset($data->foto) }}" alt="profile" class="img-fluid rounded-circle" width="105">
+                </div>
                 <div class="d-flex flex-column">
 
                     <!-- Tgl Lahir -->
@@ -32,7 +35,7 @@
                     <p>{{ $data->umur }}</p>
 
                     <!-- Provinsi -->
-                    <h5 class="fw-semibold">Umur</h5>
+                    <h5 class="fw-semibold">Provinsi</h5>
                     <p>{{ $data->provinsi }}</p>
 
                     <!-- Kota -->

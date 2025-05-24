@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Lansia;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -34,7 +35,6 @@ class LansiaImport implements ToModel, WithStartRow, WithHeadingRow
             // 'lat'=> $row['lat'],
             // 'lng'=> $row['lng'],
             'tgl_lahir' => $row['tgl_lhr'],
-            'umur' => $row['umur_dtks'],
             'provinsi' => $row['provinsi'],
             'kabupaten' => $row['kabupaten'],
             'kecamatan' => $row['kecamatan'],

@@ -3,12 +3,13 @@
 namespace App\Exports;
 
 use App\Models\Lansia;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class LansiaExport implements FromCollection,WithHeadings,WithStyles
+class LansiaExport implements FromCollection, WithHeadings, WithStyles
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -52,7 +53,7 @@ class LansiaExport implements FromCollection,WithHeadings,WithStyles
             'Status',
         ];
     }
-       public function styles(Worksheet $sheet)
+    public function styles(Worksheet $sheet)
     {
         return [
             // Style the first row as bold text.

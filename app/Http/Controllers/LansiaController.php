@@ -7,6 +7,7 @@ use App\Imports\LansiaImport;
 use App\Models\Lansia;
 use App\Models\User;
 use App\Notifications\LansiaNotif;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +53,7 @@ class LansiaController extends Controller
             'desa' => ['required'],
             'rt' => ['required', 'numeric'],
             'rw' => ['required', 'numeric'],
+            'foto' => ['file', 'mimes:jpeg,jpg,png', 'max:2048'],
         ]);
 
         if ($validator->fails()) {
@@ -65,8 +67,17 @@ class LansiaController extends Controller
 
         try {
             DB::beginTransaction();
+
             $data = Lansia::findOrFail($id);
-            $data->update($request->only('nama', 'nik', 'alamat', 'lat', 'lng', 'tgl_lahir', 'umur', 'provinsi', 'kabupaten', 'kecamatan', 'desa', 'rt', 'rw', 'user_id', 'status'));
+            if ($request->hasFile('profile')) {
+                $file = $request->file('profile');
+                $name = 'lansia-' . time() . '.' . $file->getClientOriginalExtension();
+                $path = 'storage/profile';
+
+                $file->move(public_path($path), $name);
+                $request->merge(['foto' => $path.'/'.$name]);
+            }
+            $data->update($request->only('nama', 'nik', 'alamat', 'lat', 'lng', 'tgl_lahir', 'provinsi', 'kabupaten', 'kecamatan', 'umur','desa', 'rt', 'rw', 'user_id', 'status', 'foto'));
             $user = User::role('admin')->get();
             $notif = [
                 'title' => 'Lansia baru ditambahkan!',

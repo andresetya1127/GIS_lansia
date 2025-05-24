@@ -16,12 +16,14 @@ const Toast = Swal.mixin({
 
 $(document).on('submit', '#form-lansia', function (e) {
     e.preventDefault();
-    const form = $(this);
+    let form = new FormData(this);
     $.ajax({
         'url': $(this).attr('action'),
         'method': 'POST',
-        'data': form.serialize(),
+        'data': form,
         'dataType': 'json',
+        'contentType': false,
+        'processData': false,
         beforeSend: function () {
             $('.loader').removeClass('d-none');
         },
