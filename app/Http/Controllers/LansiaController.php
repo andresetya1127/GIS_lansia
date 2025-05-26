@@ -46,7 +46,6 @@ class LansiaController extends Controller
             'lat' => ['required'],
             'lng' => ['required'],
             'tgl_lahir' => ['required'],
-            'umur' => ['required', 'numeric'],
             'provinsi' => ['required'],
             'kabupaten' => ['required'],
             'kecamatan' => ['required'],

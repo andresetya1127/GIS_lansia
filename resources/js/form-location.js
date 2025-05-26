@@ -38,18 +38,21 @@ $(document).on('submit', '#form-lansia', function (e) {
             }
         },
         error: function (error) {
+            $('.loader').addClass('d-none');
             Toast.fire({
                 icon: error.responseJSON.status,
                 title: error.responseJSON.message
             });
             if (error.responseJSON.validations) {
-                form.find('.invalid-feedback').remove();
-                form.find('.is-invalid').removeClass('is-invalid');
+                console.log(error.responseJSON.validations);
+
+               $('#form-lansia').find('.invalid-feedback').remove();
+               $('#form-lansia').find('.is-invalid').removeClass('is-invalid');
                 const errors = error.responseJSON.validations;
 
                 for (const [key, value] of Object.entries(errors)) {
-                    form.find(`input[name="${key}"]`).addClass('is-invalid');
-                    form.find(`input[name="${key}"]`).after(`<div class="invalid-feedback">${value}</div>`);
+                   $('#form-lansia').find(`input[name="${key}"]`).addClass('is-invalid');
+                   $('#form-lansia').find(`input[name="${key}"]`).after(`<div class="invalid-feedback">${value}</div>`);
                 }
             }
         },
