@@ -59,7 +59,7 @@ class LansiaImport implements ToModel, WithStartRow, WithHeadingRow
                     $data['lng'] = $location['lon'];
                 }
 
-                return new Lansia($data);
+                return Lansia::create($data);
             }
         } catch (\Throwable $th) {
             dd($th);
