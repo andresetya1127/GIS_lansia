@@ -117,7 +117,6 @@ class LansiaController extends Controller
                 'status' => 'error',
                 'message' => 'Lokasi gagal ditemukan!',
                 'code' => 400,
-
             ];
         }
 

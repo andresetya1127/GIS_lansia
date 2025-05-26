@@ -133,9 +133,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
       Livewire.on('markerError', async (data) => {
+
         Toast.fire({
             icon: 'error',
-            title: data.message
+            title: data[0].message
         })
       });
 

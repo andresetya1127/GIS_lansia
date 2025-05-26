@@ -124,7 +124,7 @@ class LansiaTable extends DataTableComponent
                 ->inputFormat('Y-m-d H:i:s')
                 ->outputFormat('d M Y')
                 ->sortable(),
-            Column::make("Petugas", 'pendata.name')
+            Column::make("Pendata", 'pendata.name')
                 ->searchable()
                 ->sortable(),
             Column::make("Status", "status")
