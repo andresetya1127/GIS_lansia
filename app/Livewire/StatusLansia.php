@@ -66,6 +66,7 @@ class StatusLansia extends Component
     {
         $data = Lansia::find($this->id);
         $data->status = 'reject';
+        $data->note = $message;
         $data->save();
         $notif = [
             'title' => 'Lansia gagal dikonfirmasi',

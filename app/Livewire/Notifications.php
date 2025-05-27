@@ -8,7 +8,7 @@ class Notifications extends Component
 {
     public function render()
     {
-        $notifications = auth()->user()->notifications()->get();
+        $notifications = auth()->user()->notifications()->latest()->limit(5)->get();
         $notifLimit = auth()->user()->notifications()->latest()->take(5)->get();
 
         return view('livewire.notifications', compact('notifications', 'notifLimit'));

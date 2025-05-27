@@ -62,7 +62,7 @@ class LansiaImport implements ToModel, WithStartRow, WithHeadingRow
                 return Lansia::create($data);
             }
         } catch (\Throwable $th) {
-            dd($th);
+            return null;
         }
     }
 

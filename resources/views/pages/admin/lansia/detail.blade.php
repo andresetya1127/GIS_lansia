@@ -21,9 +21,11 @@
     <div class="mt-5 row">
         <div class="col-xl-4 col-md-4 col-sm-12 mb-3">
             <x-base.card>
-                <div class="d-flex justify-content-center mb-4">
+              @if ($data->foto)
+                    <div class="d-flex justify-content-center mb-4">
                     <img src="{{ asset($data->foto) }}" alt="profile" class="img-fluid rounded-circle" width="105">
                 </div>
+              @endif
                 <div class="d-flex flex-column">
 
                     <!-- Tgl Lahir -->

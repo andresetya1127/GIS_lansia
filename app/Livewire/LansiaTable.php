@@ -39,7 +39,7 @@ class LansiaTable extends DataTableComponent
         $this->setConfigurableAreas([
             'before-toolbar' => [
                 'components.table.header-tools',
-                 $this->import(),
+                $this->import(),
             ]
         ]);
     }
@@ -102,9 +102,6 @@ class LansiaTable extends DataTableComponent
             Column::make("Nama", "nama")
                 ->searchable()
                 ->sortable(),
-            Column::make("NIK", "nik")
-                ->searchable()
-                ->sortable(),
             DateColumn::make("Tgl Lahir", "tgl_lahir")
                 ->inputFormat('Y-m-d')
                 ->outputFormat('d M Y')
@@ -115,16 +112,30 @@ class LansiaTable extends DataTableComponent
             Column::make("lat")->hideIf(true),
             Column::make("lng")->hideIf(true),
             Column::make("Kordinat")
-            ->label(fn( $row) => view('components.table.badge', [
-                'icon' => $row->lat && $row->lng ? 'fa fa-check-circle' : 'fa fa-times-circle',
-                'slot' => '',
-                'class' => $row->lat && $row->lng ? 'success text-white' : 'danger text-white',
-            ])),
+                ->label(fn($row) => view('components.table.badge', [
+                    'icon' => $row->lat && $row->lng ? 'fa fa-check-circle' : 'fa fa-times-circle',
+                    'slot' => '',
+                    'class' => $row->lat && $row->lng ? 'success text-white' : 'danger text-white',
+                ])),
             DateColumn::make("Tgl Pendataan", "created_at")
                 ->inputFormat('Y-m-d H:i:s')
                 ->outputFormat('d M Y')
                 ->sortable(),
             Column::make("Pendata", 'pendata.name')
+                ->searchable()
+                ->sortable(),
+            Column::make("Pesan", "note")
+                ->format(function ($val) {
+                  if ($val) {
+                      return view('components.table.popover', [
+                        'icon' => 'fa fa-question-circle',
+                        'message' => $val,
+                        'title' => ''
+                    ]);
+                  }else{
+                      return '-';
+                  }
+                })
                 ->searchable()
                 ->sortable(),
             Column::make("Status", "status")
@@ -158,9 +169,9 @@ class LansiaTable extends DataTableComponent
     {
         $lansia = Lansia::find($id);
         if ($lansia->lng && $lansia->lat) {
-              $this->dispatch('markerUpdate', $lansia);
-        }else{
-              $this->dispatch('markerError', ['message' => 'Lokasi tidak ditemukan!']);
+            $this->dispatch('markerUpdate', $lansia);
+        } else {
+            $this->dispatch('markerError', ['message' => 'Lokasi tidak ditemukan!']);
         }
     }
 

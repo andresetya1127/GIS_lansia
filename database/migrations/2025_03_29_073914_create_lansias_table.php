@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('status')->default('pending');
             $table->string('foto')->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

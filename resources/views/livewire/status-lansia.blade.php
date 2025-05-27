@@ -21,4 +21,10 @@
             Simpan
         </button>
     @endif
+
+
+    @if ($data->status == 'reject')
+        <h5 class="fw-semibold">Catatan</h5>
+        <p>{{ $data->note }}</p>
+    @endif
 </div>
