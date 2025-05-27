@@ -28,12 +28,12 @@ return [
         'divider' => false,
         'role' => ['admin'],
     ],
-    [
-        'name' => 'Website',
-        'route' => 'role',
-        'icon' => 'fa-globe',
-        'divider' => 'Pengaturan',
-        'role' => ['admin'],
-    ],
+    // [
+    //     'name' => 'Website',
+    //     'route' => 'role',
+    //     'icon' => 'fa-globe',
+    //     'divider' => 'Pengaturan',
+    //     'role' => ['admin'],
+    // ],
 
 ];

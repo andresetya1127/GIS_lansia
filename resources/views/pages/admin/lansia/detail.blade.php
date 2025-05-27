@@ -26,6 +26,7 @@
                     <img src="{{ asset($data->foto) }}" alt="profile" class="img-fluid rounded-circle" width="105">
                 </div>
               @endif
+
                 <div class="d-flex flex-column">
 
                     <!-- Tgl Lahir -->
