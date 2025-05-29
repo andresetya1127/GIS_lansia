@@ -8,9 +8,15 @@
         </span>
     </p>
 
+    @if ($data->status == 'reject')
+        <h5 class="fw-semibold">Catatan</h5>
+        <p>{{ $data->note }}</p>
+    @endif
 
-    @if ($data->status == 'pending' && auth()->user()->hasRole('admin'))
-        <h5 class="fw-semibold">Ubah Status</h5>
+    <hr>
+
+    @if ( auth()->user()->hasRole('admin'))
+        <h5 class="fw-semibold m-0">Ubah Status</h5>
         <x-forms.select name="status" placeholder="Pilih Status" wire:model="status" select-type="normal">
             <option value="" selected>Pilih Status</option>
             <option value="success">Konfirmasi</option>
@@ -22,9 +28,4 @@
         </button>
     @endif
 
-
-    @if ($data->status == 'reject')
-        <h5 class="fw-semibold">Catatan</h5>
-        <p>{{ $data->note }}</p>
-    @endif
 </div>

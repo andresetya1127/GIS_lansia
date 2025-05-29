@@ -16,11 +16,7 @@ class LansiaTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        if (!auth()->user()->hasRole('Admin')) {
-            return Lansia::query()->where('user_id', auth()->user()->id);
-        } else {
-            return Lansia::query();
-        }
+        return Lansia::query();
     }
     public function configure(): void
     {
@@ -80,16 +76,20 @@ class LansiaTable extends DataTableComponent
                             'color' => 'warning text-white',
                             'icon' => 'fa-location-dot',
                             'wire:click' => "findLocation('$row->id')",
+                            'active' => true,
+
                         ],
                         [
                             'icon' => 'fa-eye',
                             'wire:click' => "detail('$row->id')",
                             'color' => 'primary text-white',
+                            'active' => true,
                         ],
                         [
                             'icon' => 'fa-trash-can',
                             'wire:click' => "delete('$row->id')",
                             'color' => 'danger text-white',
+                            'active' => $row->user_id == auth()->user()->id ? true :(auth()->user()->hasRole('admin') ? true : false),
                         ]
                     ]
                 ])),
@@ -126,15 +126,15 @@ class LansiaTable extends DataTableComponent
                 ->sortable(),
             Column::make("Pesan", "note")
                 ->format(function ($val) {
-                  if ($val) {
-                      return view('components.table.popover', [
-                        'icon' => 'fa fa-question-circle',
-                        'message' => $val,
-                        'title' => ''
-                    ]);
-                  }else{
-                      return '-';
-                  }
+                    if ($val) {
+                        return view('components.table.popover', [
+                            'icon' => 'fa fa-question-circle',
+                            'message' => $val,
+                            'title' => ''
+                        ]);
+                    } else {
+                        return '-';
+                    }
                 })
                 ->searchable()
                 ->sortable(),
