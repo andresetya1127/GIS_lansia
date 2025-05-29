@@ -15,17 +15,15 @@
 
     <hr>
 
-    @if ( auth()->user()->hasRole('admin'))
-        <h5 class="fw-semibold m-0">Ubah Status</h5>
-        <x-forms.select name="status" placeholder="Pilih Status" wire:model="status" select-type="normal">
-            <option value="" selected>Pilih Status</option>
-            <option value="success">Konfirmasi</option>
-            <option value="reject">Tolak</option>
-            <option value="die">Meninggal</option>
-        </x-forms.select>
-        <button class="btn btn-primary float-end" wire:click="updateStatus">
-            Simpan
-        </button>
-    @endif
+    <h5 class="fw-semibold m-0">Ubah Status</h5>
+    <x-forms.select name="status" placeholder="Pilih Status" wire:model="status" select-type="normal">
+        <option value="" selected>Pilih Status</option>
+        <option value="success">Konfirmasi</option>
+        <option value="reject">Tolak</option>
+        <option value="die">Meninggal</option>
+    </x-forms.select>
 
+    <button class="btn btn-primary float-end" wire:click="updateStatus">
+        Simpan
+    </button>
 </div>
