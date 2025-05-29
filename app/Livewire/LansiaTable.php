@@ -142,7 +142,7 @@ class LansiaTable extends DataTableComponent
                 ->format(fn($value, $row, Column $column) => view('components.table.badge', [
                     'class' => ($value == 'success' ? 'success' : ($value == 'pending' ? 'info' : 'danger')) . ' text-white text-uppercase',
                     'icon' => $value == 'success' ? 'fa-check' : ($value == 'pending' ? 'fa-hourglass-half' : 'fa-xmark'),
-                    'slot' => $value == 'success' ? 'Dikonfirmasi' : ($value == 'pending' ? 'Proses' : 'Ditolak'),
+                    'slot' => $value == 'success' ? 'Dikonfirmasi' : ($value == 'pending' ? 'Proses' : ($value == 'reject' ? 'Ditolak' : 'Meninggal')),
                 ]))
                 ->sortable()
                 ->searchable(),
