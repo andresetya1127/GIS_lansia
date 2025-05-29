@@ -3,7 +3,7 @@
     <h5 class="fw-semibold">Status</h5>
     <p>
         <span
-            class="text-capitalize badge bg-{{ $data->status == 'success' ? 'success' : ($data->status == 'pending' ? 'info' : ($data->status == 'die' ? 'danger' : 'warning')) }}">
+            class="text-capitalize badge bg-{{ $data->status == 'success' ? 'success' : ($data->status == 'pending' ? 'info' : ($data->status == 'die' ? 'warning' : 'danger')) }}">
             {{ $data->status == 'success' ? 'Dikonfirmasi' : ($data->status == 'pending' ? 'Proses' : ($data->status == 'die' ? 'Meninggal' : 'Ditolak')) }}
         </span>
     </p>

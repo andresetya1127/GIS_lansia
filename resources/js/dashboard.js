@@ -96,7 +96,7 @@ async function initMap() {
         const pinElement = new PinElement({
             glyph: String(i + 1),
             glyphColor: "white",
-            background: position.status == 'success' ? '#0cf747' : (position.status == 'pending' ? '#289de0' : '#ff0000'),
+            background: position.status == 'success' ? '#0cf747' : (position.status == 'pending' ? '#289de0' : (position.status == 'die' ? '#e60719' : '#ebca10')),
             borderColor: '#f5f0f0',
         });
         const content = pinElement.element;
