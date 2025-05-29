@@ -150,14 +150,12 @@ class LansiaController extends Controller
     public function detailResponse($id)
     {
         $data = Lansia::find($id);
-        $this->canAccess($data);
         return response()->json($data);
     }
 
     public function detail($id): View
     {
         $data = Lansia::findOrFail($id);
-        $this->canAccess($data);
         return view('pages.admin.lansia.detail', ['data' => $data]);
     }
 
