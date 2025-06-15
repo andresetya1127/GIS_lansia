@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithMappedCells;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class LansiaImport implements ToModel, WithStartRow, WithHeadingRow
+class LansiaImport implements ToModel, WithStartRow, WithHeadingRow,WithMappedCells
 {
     public function mapping(): array
     {
