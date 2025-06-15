@@ -17,7 +17,7 @@
         "@googlemaps/markerclusterer": "^2.5.3",
         "bootstrap": "^5.3.5",
         "jquery": "^3.7.1",
-        "sweetalert2": "^11.21.0",
+        "sweetalert2": "^11.6.13",
         "tom-select": "^2.4.3"
     }
 }

@@ -15,14 +15,28 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 
 class LansiaImport implements ToModel, WithStartRow, WithHeadingRow
 {
-
+    public function mapping(): array
+    {
+        return [
+            'nik_pm'=>'A1',
+            'nama_pm'=>'B1',
+            'tgl_lhr'=>'C1',
+            'provinsi'=>'E1',
+            'kabupaten'=>'F1',
+            'kecamatan'=>'G1',
+            'kelurahan'=>'H1',
+            'alamat'=>'I1',
+            'rt'=>'J1',
+            'rw'=>'K1',
+        ];
+    }
     public function startRow(): int
     {
         return 2;
     }
 
     /**
-     * @param array $row
+     * @param array $rowWW
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */

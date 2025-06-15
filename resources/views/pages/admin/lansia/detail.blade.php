@@ -10,9 +10,9 @@
                 <a href="{{ route('lansia.edit', $data->uuid) }}" class="btn btn-primary">
                     <i class="fa-solid fa-pen-to-square"></i> Edit
                 </a>
-                <button class="btn btn-danger text-white">
+                {{-- <button class="btn btn-danger text-white">
                     <i class="fa-solid fa-trash"></i>
-                </button>
+                </button> --}}
             </div>
         </div>
     </div>
@@ -21,11 +21,12 @@
     <div class="mt-5 row">
         <div class="col-xl-4 col-md-4 col-sm-12 mb-3">
             <x-base.card>
-              @if ($data->foto)
+
+                @if ($data->foto)
                     <div class="d-flex justify-content-center mb-4">
-                    <img src="{{ asset($data->foto) }}" alt="profile" class="img-fluid rounded-circle" width="105">
-                </div>
-              @endif
+                        <img src="{{ asset($data->foto) }}" alt="profile" class="img-fluid rounded-circle" width="105">
+                    </div>
+                @endif
 
                 <div class="d-flex flex-column">
 
